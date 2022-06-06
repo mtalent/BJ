@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#006400"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/dealer_card_one"
+        android:contentDescription="@string/dealer_card"
+        android:layout_width="68.6dp"
+        android:layout_height="96.04dp"
+        android:src="@drawable/ace_hts"
+        android:visibility="invisible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageView
+        android:id="@+id/dealer_card_two"
+        android:contentDescription="@string/dealer_card"
+        android:layout_width="68.6dp"
+        android:layout_height="96.04dp"
+        android:src="@drawable/ace_hts"
+        android:visibility="invisible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/dealer_card_one"/>
+
+    <ImageView
+        android:id="@+id/dealer_card_three"
+        android:contentDescription="@string/dealer_card"
+        android:layout_width="68.6dp"
+        android:layout_height="96.04dp"
+        android:src="@drawable/ace_hts"
+        android:visibility="invisible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/dealer_card_two"/>
+
+    <ImageView
+        android:id="@+id/dealer_card_four"
+        android:contentDescription="@string/dealer_card"
+        android:layout_width="68.6dp"
+        android:layout_height="96.04dp"
+        android:src="@drawable/ace_hts"
+        android:visibility="invisible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/dealer_card_three"/>
+
+    <ImageView
+        android:id="@+id/dealer_card_five"
+        android:contentDescription="@string/dealer_card"
+        android:layout_width="68.6dp"
+        android:layout_height="96.04dp"
+        android:src="@drawable/ace_hts"
+        android:visibility="invisible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/dealer_card_four"/>
+
+    <ImageView
+        android:id="@+id/dealer_card_six"
+        android:contentDescription="@string/dealer_card"
+        android:layout_width="68.6dp"
+        android:layout_height="96.04dp"
+        android:src="@drawable/ace_hts"
+        android:visibility="invisible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/dealer_card_five"/>
+
+    <ImageView
+        android:id="@+id/dealer_card_seven"
+        android:contentDescription="@string/dealer_card"
+        android:layout_width="68.6dp"
+        android:layout_height="96.04dp"
+        android:src="@drawable/ace_hts"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/dealer_card_one"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageView
+        android:id="@+id/dealer_card_eight"
+        android:contentDescription="@string/dealer_card"
+        android:layout_width="68.6dp"
+        android:layout_height="96.04dp"
+        android:src="@drawable/ace_hts"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/dealer_card_two"
+        app:layout_constraintStart_toEndOf="@id/dealer_card_seven"/>
+
+    <ImageView
+        android:id="@+id/dealer_card_nine"
+        android:contentDescription="@string/dealer_card"
+        android:layout_width="68.6dp"
+        android:layout_height="96.04dp"
+        android:src="@drawable/ace_hts"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/dealer_card_three"
+        app:layout_constraintStart_toEndOf="@id/dealer_card_eight"/>
+
+    <ImageView
+        android:id="@+id/dealer_card_ten"
+        android:contentDescription="@string/dealer_card"
+        android:layout_width="68.6dp"
+        android:layout_height="96.04dp"
+        android:src="@drawable/ace_hts"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/dealer_card_four"
+        app:layout_constraintStart_toEndOf="@id/dealer_card_nine"/>
+
+    <ImageView
+        android:id="@+id/dealer_card_eleven"
+        android:contentDescription="@string/dealer_card"
+        android:layout_width="68.6dp"
+        android:layout_height="96.04dp"
+        android:src="@drawable/ace_hts"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/dealer_card_five"
+        app:layout_constraintStart_toEndOf="@id/dealer_card_ten"/>
+
+    <ImageView
+        android:id="@+id/player_card_seven"
+        android:contentDescription="@string/player_card"
+        android:layout_width="68.6dp"
+        android:layout_height="96.04dp"
+        android:src="@drawable/ace_hts"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageView
+        android:id="@+id/player_card_eight"
+        android:contentDescription="@string/player_card"
+        android:layout_width="68.6dp"
+        android:layout_height="96.04dp"
+        android:src="@drawable/ace_hts"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/player_card_seven"/>
+
+    <ImageView
+        android:id="@+id/player_card_nine"
+        android:contentDescription="@string/player_card"
+        android:layout_width="68.6dp"
+        android:layout_height="96.04dp"
+        android:src="@drawable/ace_hts"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/player_card_eight"/>
+
+    <ImageView
+        android:id="@+id/player_card_ten"
+        android:contentDescription="@string/player_card"
+        android:layout_width="68.6dp"
+        android:layout_height="96.04dp"
+        android:src="@drawable/ace_hts"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/player_card_nine"/>
+
+    <ImageView
+        android:id="@+id/player_card_eleven"
+        android:contentDescription="@string/player_card"
+        android:layout_width="68.6dp"
+        android:layout_height="96.04dp"
+        android:src="@drawable/ace_hts"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/player_card_ten"/>
+
+    <ImageView
+        android:id="@+id/player_card_one"
+        android:contentDescription="@string/player_card"
+        android:layout_width="68.6dp"
+        android:layout_height="96.04dp"
+        android:src="@drawable/ace_hts"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/player_card_seven"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageView
+        android:id="@+id/player_card_two"
+        android:contentDescription="@string/player_card"
+        android:layout_width="68.6dp"
+        android:layout_height="96.04dp"
+        android:src="@drawable/ace_hts"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/player_card_eight"
+        app:layout_constraintStart_toEndOf="@id/player_card_one"/>
+
+    <ImageView
+        android:id="@+id/player_card_three"
+        android:contentDescription="@string/player_card"
+        android:layout_width="68.6dp"
+        android:layout_height="96.04dp"
+        android:src="@drawable/ace_hts"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/player_card_nine"
+        app:layout_constraintStart_toEndOf="@id/player_card_two"/>
+
+    <ImageView
+        android:id="@+id/player_card_four"
+        android:contentDescription="@string/player_card"
+        android:layout_width="68.6dp"
+        android:layout_height="96.04dp"
+        android:src="@drawable/ace_hts"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/player_card_ten"
+        app:layout_constraintStart_toEndOf="@id/player_card_three"/>
+
+    <ImageView
+        android:id="@+id/player_card_five"
+        android:contentDescription="@string/player_card"
+        android:layout_width="68.6dp"
+        android:layout_height="96.04dp"
+        android:src="@drawable/ace_hts"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/player_card_eleven"
+        app:layout_constraintStart_toEndOf="@id/player_card_four"/>
+
+    <ImageView
+        android:id="@+id/player_card_six"
+        android:contentDescription="@string/player_card"
+        android:layout_width="68.6dp"
+        android:layout_height="96.04dp"
+        android:src="@drawable/ace_hts"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/player_card_eleven"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
