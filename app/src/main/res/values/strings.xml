@@ -3,6 +3,7 @@
     <string name="dealer_card">image view used for dealer hand</string>
     <string name="player_card">image view used for dealer hand</string>
     <string name="hit">HIT</string>
+    <string name="stay">STAY</string>
 
 
 </resources>

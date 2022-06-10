@@ -6,6 +6,7 @@ data class Card(
    val imageResourceId: Int,
    val value: String,
    val suite: String,
+   var number : Int
    )
 
 

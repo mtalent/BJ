@@ -1,6 +1,5 @@
 package com.example.bj.model
 
-import androidx.annotation.DrawableRes
 import com.example.bj.R
 
 
@@ -23,19 +22,22 @@ class Deck   {
         "ten_hts" to R.drawable.ten_hts, "ten_clb" to R.drawable.ten_clb, "ten_dia" to R.drawable.ten_dia, "ten_spd" to R.drawable.ten_spd,
         "jack_hts" to R.drawable.jack_hts, "jack_clb" to R.drawable.jack_clb, "jack_dia" to R.drawable.jack_dia, "jack_spd" to R.drawable.jack_spd,
         "queen_hts" to R.drawable.queen_hts, "queen_clb" to R.drawable.queen_clb, "queen_dia" to R.drawable.queen_dia, "queen_spd" to R.drawable.queen_spd,
-        "king_hts" to R.drawable.king_hts, "king_clb" to R.drawable.king_clb, "king_dia" to R.drawable.king_dia, "king_spd" to R.drawable.king_spd)
+        "king_hts" to R.drawable.king_hts, "king_clb" to R.drawable.king_clb, "king_dia" to R.drawable.king_dia, "king_spd" to R.drawable.king_spd, "back_card" to R.drawable.backcard)
 
-    public val deck : MutableList<Card> = createDeck()
+    val deck : MutableList<Card> = createDeck()
 
     private fun createDeck(): MutableList<Card> {
         val temp:MutableList<Card> = ArrayList()
             for (s in 0..3)  {
                 for(v in 1..13) {
                     val crdPicture: String = value.getValue(v) + "_" + suit.getValue(s)
-                   val card = Card(picture[crdPicture]!!, value.getValue(v), suit.getValue(s))
+                   val card = Card(picture[crdPicture]!!, value.getValue(v), suit.getValue(s), v)
                    temp.add(card)
                 }
             }
+        val crdPicture = "back_card"
+        val card = Card(picture[crdPicture]!!, "backCard", "backCard", 0)
+        temp.add(card)
         return temp
     }
 
