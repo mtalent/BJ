@@ -221,16 +221,17 @@
         app:layout_constraintStart_toEndOf="@id/player_card_seven"
         app:layout_constraintTop_toBottomOf="@id/player_card_seven"
         android:layout_marginTop="35dp"
-        android:text="@string/hit"/>
+        android:text="@string/btnDeal"/>
 
     <Button
         android:id="@+id/btn_stay"
         android:layout_width="125dp"
         android:layout_height="wrap_content"
+        android:visibility="invisible"
         app:layout_constraintEnd_toStartOf="@id/player_card_six"
         app:layout_constraintTop_toBottomOf="@id/player_card_seven"
         android:layout_marginTop="35dp"
-        android:text="@string/stay"/>
+        android:text="@string/btnStay"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

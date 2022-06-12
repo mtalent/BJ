@@ -2,8 +2,9 @@
     <string name="app_name">BJ</string>
     <string name="dealer_card">image view used for dealer hand</string>
     <string name="player_card">image view used for dealer hand</string>
-    <string name="hit">HIT</string>
-    <string name="stay">STAY</string>
+    <string name="btnStay">STAY</string>
+    <string name="btnHit">HIT</string>
+    <string name="btnDeal">DEAL</string>
 
 
 </resources>

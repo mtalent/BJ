@@ -6,7 +6,18 @@ data class Card(
    val imageResourceId: Int,
    val value: String,
    val suite: String,
-   var number : Int
+   var number : Int,
+   var ace : Ace
    )
+
+
+
+enum class Ace {
+   NOT_ACE,
+   ONE,
+   ELEVEN
+}
+
+
 
 

@@ -31,13 +31,15 @@ class Deck   {
             for (s in 0..3)  {
                 for(v in 1..13) {
                     val crdPicture: String = value.getValue(v) + "_" + suit.getValue(s)
-                   val card = Card(picture[crdPicture]!!, value.getValue(v), suit.getValue(s), v)
-                   temp.add(card)
+                    val card = Card(picture[crdPicture]!!, value.getValue(v), suit.getValue(s), v, Ace.NOT_ACE)
+                    if (card.value.contains("ace")){
+                        card.ace = Ace.ELEVEN
+                        card.number = 11
+                    }
+                    temp.add(card)
                 }
             }
-        val crdPicture = "back_card"
-        val card = Card(picture[crdPicture]!!, "backCard", "backCard", 0)
-        temp.add(card)
+
         return temp
     }
 
