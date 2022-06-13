@@ -22,11 +22,9 @@ class MainActivity : AppCompatActivity() {
     private var clickCount : Int = 13
     private var dClickCount : Int = 2
     private lateinit var deck : Deck
-    private var cardsInDeck : Int = 51
+    //private var cardsInDeck : Int = 51
     private lateinit var views: MutableList<View>
     private var buttonState : ButtonState = ButtonState.DEAL
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,9 +33,7 @@ class MainActivity : AppCompatActivity() {
         btnHit = findViewById(R.id.btn_hit)
         btnStay = findViewById(R.id.btn_stay)
 
-
         btnHit.setOnClickListener {
-
             if (buttonState == ButtonState.DEAL) {
                 dealCards()
                 clickCount = 13
@@ -55,15 +51,11 @@ class MainActivity : AppCompatActivity() {
                 clickCount ++
                 println("***********player hand value ************** ${getHandValue(playerHand)}")
                 if (total > 21) {
-                    Toast.makeText(this, "you busted", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "PLAYER BUST WITH ${getHandValue(playerHand)}", Toast.LENGTH_SHORT).show()
                     buttonState = ButtonState.DEAL
                     btnHit.text = getString((R.string.btnDeal))
-
                 }
-
             }
-
-
         }
 
         btnStay.setOnClickListener{
@@ -76,7 +68,6 @@ class MainActivity : AppCompatActivity() {
                 dClickCount ++
                 println("***********dealer hand value ************** ${getHandValue(dealerHand)}")
             }
-
             do {
                 if (getHandValue(dealerHand) == 17) {
                     switchAnAce(dealerHand)
@@ -104,30 +95,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun dealerPlay(): Int {
-
         flipHoldCard()
         return getHandValue(dealerHand)
-
     }
 
     private fun flipHoldCard() {
         views[1].setBackgroundResource(dealerHand.hand[1].imageResourceId)
     }
 
-
     private fun getCard(choose : Int) : Card {
-
         println("*********** choose  *********************$choose")
-
         val selectedCard = deck.deck[choose]
         deck.deck.removeAt(choose)
-
         println("********************************$selectedCard")
   //      views[clickCount].setBackgroundResource(selectedCard.imageResourceId)
      //   views[clickCount].visibility = View.VISIBLE
         return selectedCard
-
-
     }
 
     private fun rand(end: Int): Int {
@@ -163,7 +146,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun dealCards() {
-
         listViews()
         deck=Deck()
         playerHand.hand.clear()
@@ -173,8 +155,6 @@ class MainActivity : AppCompatActivity() {
             view.setBackgroundResource(0)
             view.visibility = View.INVISIBLE
         }
-
-
 
         for (i in 0..3) {
 
@@ -186,9 +166,7 @@ class MainActivity : AppCompatActivity() {
                     views[11].setBackgroundResource(selectedCard.imageResourceId)
                     views[11].visibility = View.VISIBLE
                     playerHand.hand.add(selectedCard)
-
                 }
-
                 1 -> {
                     rnd = rand((deck.deck.size) - 1)
                     val selectedCard = getCard(rnd)
@@ -196,30 +174,24 @@ class MainActivity : AppCompatActivity() {
                     views[0].visibility = View.VISIBLE
                     dealerHand.hand.add(selectedCard)
                 }
-
                 2 -> {
                     rnd = rand((deck.deck.size) - 1)
                     val selectedCard = getCard(rnd)
                     views[12].setBackgroundResource(selectedCard.imageResourceId)
                     views[12].visibility = View.VISIBLE
                     playerHand.hand.add(selectedCard)
-
                 }
-
                 3 -> {
                     rnd = rand((deck.deck.size) - 1)
                     val selectedCard = getCard(rnd)
                     views[1].setBackgroundResource(R.drawable.backcard)
                     views[1].visibility = View.VISIBLE
                     dealerHand.hand.add(selectedCard)
-
                 }
             }
         }
-
         println("********playerHand*****value************** ${getHandValue(playerHand)}")
         println("*****dealerHand******value************** ${getHandValue(dealerHand)}")
-
     }
 
     private fun getHandValue(hand: Hand) : Int {
@@ -249,10 +221,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun  getNumAces(hand: Hand): Int {
-
         var aces  = 0
-
-        for (card in playerHand.hand) {
+        for (card in hand.hand) {
             if (card.ace == Ace.ELEVEN) {
                 aces++
             }
@@ -260,15 +230,9 @@ class MainActivity : AppCompatActivity() {
         return aces
     }
 
-
-
-
-
-
-
     private fun switchAnAce(hand: Hand) {
         val list : MutableList<Card> = mutableListOf()
-        for (card in playerHand.hand) {
+        for (card in hand.hand) {
             if (card.ace == Ace.ELEVEN) {
                 list.add(card)
             }
@@ -280,9 +244,7 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-
-
-public enum class ButtonState {
+enum class ButtonState {
     HIT,
     DEAL
 }
