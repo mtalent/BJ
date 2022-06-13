@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     private val playerHand : Hand = Hand()
     private val dealerHand : Hand = Hand()
     private var clickCount : Int = 13
+    private var dClickCount : Int = 2
     private lateinit var deck : Deck
     private var cardsInDeck : Int = 51
     private lateinit var views: MutableList<View>
@@ -40,6 +41,7 @@ class MainActivity : AppCompatActivity() {
             if (buttonState == ButtonState.DEAL) {
                 dealCards()
                 clickCount = 13
+                dClickCount = 2
                 buttonState = ButtonState.HIT
                 btnHit.text = getString(R.string.btnHit)
             } else {
@@ -49,9 +51,9 @@ class MainActivity : AppCompatActivity() {
                 views[clickCount].setBackgroundResource(selectedCard.imageResourceId)
                 views[clickCount].visibility = View.VISIBLE
                 playerHand.hand.add(selectedCard)
-                val total : Int = getHandValue()
+                val total : Int = getHandValue(playerHand)
                 clickCount ++
-                println("*********** hand value ************** ${getHandValue()}")
+                println("***********player hand value ************** ${getHandValue(playerHand)}")
                 if (total > 21) {
                     Toast.makeText(this, "you busted", Toast.LENGTH_SHORT).show()
                     buttonState = ButtonState.DEAL
@@ -65,18 +67,52 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnStay.setOnClickListener{
-            
+           // val total : Int = dealerPlay()
+            while (dealerPlay() < 17)  {
+                val selectedCard =  getCard(rand((deck.deck.size) - 1))
+                views[dClickCount].setBackgroundResource(selectedCard.imageResourceId)
+                views[dClickCount].visibility = View.VISIBLE
+                dealerHand.hand.add(selectedCard)
+                dClickCount ++
+                println("***********dealer hand value ************** ${getHandValue(dealerHand)}")
+            }
+
+            do {
+                if (getHandValue(dealerHand) == 17) {
+                    switchAnAce(dealerHand)
+                }
+            } while (getHandValue(dealerHand) == 17 && getNumAces(dealerHand) > 0)
+
+            if (getHandValue(dealerHand) > 21) {
+                Toast.makeText(this, "DEALER BUSTED ${getHandValue(dealerHand)}", Toast.LENGTH_SHORT).show()
+            }
+            else if (getHandValue(dealerHand) > getHandValue(playerHand)){
+                Toast.makeText(this, "DEALER WINS ${getHandValue(dealerHand)}", Toast.LENGTH_SHORT).show()
+            }
+            else if (getHandValue(dealerHand) == getHandValue(playerHand)){
+                Toast.makeText(this, "PUSH dealer ${getHandValue(dealerHand)} player ${getHandValue(playerHand)}", Toast.LENGTH_SHORT).show()
+            }
+            else
+            {
+                Toast.makeText(this, "PLAYER WINS ${getHandValue(playerHand)}", Toast.LENGTH_SHORT).show()
+            }
+
+            buttonState = ButtonState.DEAL
+            btnHit.text = getString((R.string.btnDeal))
         }
 
     }
 
+    private fun dealerPlay(): Int {
 
+        flipHoldCard()
+        return getHandValue(dealerHand)
 
+    }
 
-
-
-
-
+    private fun flipHoldCard() {
+        views[1].setBackgroundResource(dealerHand.hand[1].imageResourceId)
+    }
 
 
     private fun getCard(choose : Int) : Card {
@@ -181,20 +217,22 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        println("*********** hand value ************** ${getHandValue()}")
+        println("********playerHand*****value************** ${getHandValue(playerHand)}")
+        println("*****dealerHand******value************** ${getHandValue(dealerHand)}")
+
     }
 
-    private fun getHandValue() : Int {
-        return if (countNumbers() <= 21) {
-            countNumbers()
+    private fun getHandValue(hand: Hand) : Int {
+        return if (countNumbers(hand) <= 21) {
+            countNumbers(hand)
         } else {
-            handleAces()
+            handleAces(hand)
         }
     }
 
-    private fun countNumbers() : Int {
+    private fun countNumbers(hand: Hand) : Int {
         var total = 0
-        for (card in playerHand.hand) {
+        for (card in hand.hand) {
             if (card.number > 10) card.number = 10
             if (card.ace == Ace.ELEVEN) card.number = 11
             if (card.ace == Ace.ONE) card.number = 1
@@ -203,14 +241,14 @@ class MainActivity : AppCompatActivity() {
         return total
     }
 
-    private fun  handleAces(): Int {
-      if (getNumAces() > 0) {
-          switchAnAce()
+    private fun  handleAces(hand: Hand): Int {
+      if (getNumAces(hand) > 0) {
+          switchAnAce(hand)
       }
-       return countNumbers()
+       return countNumbers(hand)
     }
 
-    private fun  getNumAces(): Int {
+    private fun  getNumAces(hand: Hand): Int {
 
         var aces  = 0
 
@@ -228,7 +266,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    private fun switchAnAce() {
+    private fun switchAnAce(hand: Hand) {
         val list : MutableList<Card> = mutableListOf()
         for (card in playerHand.hand) {
             if (card.ace == Ace.ELEVEN) {
