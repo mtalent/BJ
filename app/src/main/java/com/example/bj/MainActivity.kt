@@ -3,6 +3,7 @@ package com.example.bj
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bj.model.Ace
@@ -14,9 +15,14 @@ import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
     private var rnd : Int = 0
-
+    private var dScore : Int = 0
+    private var pScore : Int = 0
     private lateinit var btnHit : Button
     private lateinit var btnStay : Button
+    private lateinit var tvPlayer : TextView
+    private lateinit var tvDealer : TextView
+    private lateinit var tvPlayerInt : TextView
+    private lateinit var tvDealerInt : TextView
     private val playerHand : Hand = Hand()
     private val dealerHand : Hand = Hand()
     private var clickCount : Int = 13
@@ -32,6 +38,12 @@ class MainActivity : AppCompatActivity() {
         //imageView = findViewById<ImageView>(R.id.dealer_card_one)
         btnHit = findViewById(R.id.btn_hit)
         btnStay = findViewById(R.id.btn_stay)
+        tvPlayer = findViewById(R.id.tv_p_score)
+        tvDealer = findViewById(R.id.tv_d_score)
+        tvPlayerInt = findViewById(R.id.tv_p_score_int)
+        tvDealerInt = findViewById(R.id.tv_d_score_int)
+        tvDealerInt.text = dScore.toString()
+        tvPlayerInt.text = pScore.toString()
 
         btnHit.setOnClickListener {
             if (buttonState == ButtonState.DEAL) {
@@ -40,6 +52,8 @@ class MainActivity : AppCompatActivity() {
                 dClickCount = 2
                 buttonState = ButtonState.HIT
                 btnHit.text = getString(R.string.btnHit)
+                btnStay.visibility = View.VISIBLE
+                btnStay.isEnabled = true
             } else {
                 rnd = rand((deck.deck.size) - 1)
                 println("**********random number*************** $rnd")
@@ -52,8 +66,12 @@ class MainActivity : AppCompatActivity() {
                 println("***********player hand value ************** ${getHandValue(playerHand)}")
                 if (total > 21) {
                     Toast.makeText(this, "PLAYER BUST WITH ${getHandValue(playerHand)}", Toast.LENGTH_SHORT).show()
+                    dealerScore()
                     buttonState = ButtonState.DEAL
                     btnHit.text = getString((R.string.btnDeal))
+                    btnStay.visibility = View.INVISIBLE
+                    btnStay.isEnabled = false
+
                 }
             }
         }
@@ -76,9 +94,11 @@ class MainActivity : AppCompatActivity() {
 
             if (getHandValue(dealerHand) > 21) {
                 Toast.makeText(this, "DEALER BUSTED ${getHandValue(dealerHand)}", Toast.LENGTH_SHORT).show()
+                playerScore()
             }
             else if (getHandValue(dealerHand) > getHandValue(playerHand)){
                 Toast.makeText(this, "DEALER WINS ${getHandValue(dealerHand)}", Toast.LENGTH_SHORT).show()
+                dealerScore()
             }
             else if (getHandValue(dealerHand) == getHandValue(playerHand)){
                 Toast.makeText(this, "PUSH dealer ${getHandValue(dealerHand)} player ${getHandValue(playerHand)}", Toast.LENGTH_SHORT).show()
@@ -86,12 +106,25 @@ class MainActivity : AppCompatActivity() {
             else
             {
                 Toast.makeText(this, "PLAYER WINS ${getHandValue(playerHand)}", Toast.LENGTH_SHORT).show()
+                playerScore()
             }
 
             buttonState = ButtonState.DEAL
             btnHit.text = getString((R.string.btnDeal))
+            btnStay.visibility = View.INVISIBLE
+            btnStay.isEnabled = false
         }
 
+    }
+
+    private fun playerScore() {
+        pScore ++
+        tvPlayerInt.text = pScore.toString()
+    }
+
+    private fun dealerScore() {
+        dScore ++
+        tvDealerInt.text = dScore.toString()
     }
 
     private fun dealerPlay(): Int {

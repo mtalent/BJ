@@ -5,6 +5,9 @@
     <string name="btnStay">STAY</string>
     <string name="btnHit">HIT</string>
     <string name="btnDeal">DEAL</string>
+    <string name="player_score">PLAYER SCORE</string>
+    <string name="_0">0</string>
+    <string name="dealer_score">DEALER SCORE</string>
 
 
 </resources>
