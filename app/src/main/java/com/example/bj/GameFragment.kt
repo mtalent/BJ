@@ -59,7 +59,7 @@ class GameFragment : Fragment() {
         tvDealerInt = binding.tvDScoreInt
         tvPlayer = binding.tvPScore
         tvPlayerInt = binding.tvPScoreInt
-        tvDealerInt.text = dScore.toString()
+
         tvPlayerInt.text = pScore.toString()
 
         views = mutableListOf()
@@ -87,6 +87,7 @@ class GameFragment : Fragment() {
         views.add(binding.playerCardEleven)
         pScore = args.score.toInt()
         userName = args.userName
+        tvPlayerInt.text = pScore.toString()
 
 
         btnHit.setOnClickListener {

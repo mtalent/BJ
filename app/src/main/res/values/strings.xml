@@ -15,6 +15,8 @@
     <string name="enter_username">ENTER USERNAME</string>
     <string name="login">LOGIN</string>
     <string name="register_new_user">REGISTER NEW USER</string>
+    <string name="amount_wagered">AMOUNT WAGERED</string>
+    <string name="_50">50</string>
 
 
 </resources>
