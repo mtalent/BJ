@@ -8,11 +8,14 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.navigation.fragment.navArgs
 import com.example.bj.databinding.FragmentGameBinding
 import com.example.bj.model.Ace
 import com.example.bj.model.Card
 import com.example.bj.model.Deck
 import com.example.bj.model.Hand
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import kotlin.random.Random
 
 
@@ -34,6 +37,10 @@ class GameFragment : Fragment() {
     private var clickCount : Int = 13
     private var dClickCount : Int = 2
     private var buttonState : ButtonState = ButtonState.DEAL
+    private val args : GameFragmentArgs by navArgs()
+    private lateinit var userName : String
+    private lateinit var database : DatabaseReference
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -78,6 +85,8 @@ class GameFragment : Fragment() {
         views.add(binding.playerCardNine)
         views.add(binding.playerCardTen)
         views.add(binding.playerCardEleven)
+        pScore = args.score.toInt()
+        userName = args.userName
 
 
         btnHit.setOnClickListener {
@@ -159,13 +168,35 @@ class GameFragment : Fragment() {
 
 
     private fun playerScore() {
-        pScore ++
+        pScore += 50
+        database = FirebaseDatabase.getInstance().getReference("Users")
+        val user = mapOf<String, Any>(
+            "userName" to userName,
+            "score" to pScore
+        )
+
+
+
+        database.child(userName).updateChildren(user).addOnSuccessListener {
+            Toast.makeText(activity,"Successfully Updated",Toast.LENGTH_SHORT).show()
+        }
         tvPlayerInt.text = pScore.toString()
     }
 
     private fun dealerScore() {
-        dScore ++
-        tvDealerInt.text = dScore.toString()
+        pScore -= 50
+        database = FirebaseDatabase.getInstance().getReference("Users")
+        val user = mapOf<String, Any>(
+            "userName" to userName,
+            "score" to pScore
+        )
+
+
+
+        database.child(userName).updateChildren(user).addOnSuccessListener {
+            Toast.makeText(activity,"Successfully Updated",Toast.LENGTH_SHORT).show()
+        }
+        tvPlayerInt.text = pScore.toString()
     }
 
     private fun dealerPlay(): Int {
