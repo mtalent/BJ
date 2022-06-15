@@ -8,6 +8,13 @@
     <string name="player_score">PLAYER SCORE</string>
     <string name="_0">0</string>
     <string name="dealer_score">DEALER SCORE</string>
+   
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login_to_blackjack_game">Login to BlackJack Game</string>
+    <string name="open_page_image">openPageImage</string>
+    <string name="enter_username">ENTER USERNAME</string>
+    <string name="login">LOGIN</string>
+    <string name="register_new_user">REGISTER NEW USER</string>
 
 
 </resources>
