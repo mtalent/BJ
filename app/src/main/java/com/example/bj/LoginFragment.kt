@@ -7,10 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.bj.databinding.FragmentLoginBinding
+
 
 
 class LoginFragment : Fragment() {
@@ -30,10 +29,13 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         btnLogin = binding.buttonLogin
+        val etUserName = binding.etUserName
 
         btnLogin.setOnClickListener {
 
-            val action = LoginFragmentDirections.actionLoginFragmentToGameFragment()
+
+
+            val action = LoginFragmentDirections.Companion.actionLoginFragmentToGameFragment()
             findNavController().navigate(action)
 
 
